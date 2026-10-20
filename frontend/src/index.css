@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-ink-950: #07080d;
+  --color-ink-900: #0d0f17;
+  --color-ink-850: #121521;
+  --color-ink-800: #181c2b;
+  --color-ink-700: #252a3d;
+  --color-ink-600: #363c55;
+  --color-accent-300: #a5b4ff;
+  --color-accent-400: #8b9cff;
+  --color-accent-500: #6d7cff;
+  --color-accent-600: #5a5ef0;
+  --color-cyan-glow: #3ee0d0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-800 antialiased dark:bg-ink-950 dark:text-slate-200;
+  font-family: var(--font-sans);
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(100 110 140 / 0.35) transparent;
+}
+
+.brand-gradient {
+  background: linear-gradient(135deg, #6d7cff 0%, #a26bff 50%, #3ee0d0 100%);
+}
+
+.brand-text {
+  background: linear-gradient(135deg, #8b9cff 0%, #c08bff 55%, #3ee0d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow-bg {
+  background:
+    radial-gradient(600px 300px at 50% -10%, rgb(109 124 255 / 0.18), transparent 70%),
+    radial-gradient(400px 240px at 85% 10%, rgb(62 224 208 / 0.08), transparent 70%);
+}
+
+.prose pre {
+  @apply p-0 bg-transparent;
+  margin: 0;
+}
+
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
+.prose :not(pre)>code {
+  @apply rounded-md bg-slate-200/70 px-1.5 py-0.5 text-[0.85em] font-medium dark:bg-ink-700/80;
+}
+
+.hljs {
+  background: transparent !important;
+}
+
+.caret::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: currentColor;
+  animation: blink 1s steps(1) infinite;
+  opacity: 0.7;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.25s ease-out both;
+}
+
+@keyframes dot {
+
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.typing-dot {
+  animation: dot 1.2s infinite ease-in-out;
+}
